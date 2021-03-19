@@ -1,0 +1,18 @@
+PUT _ingest/pipeline/fidc
+{
+  "description": "ForgeRock Identity Cloud",
+  "processors": [
+    {
+      "geoip": {
+        "field": "json_payload.http.request.client_ip",
+        "ignore_missing": true
+      }
+    },
+    {
+      "user_agent": {
+        "field": "json_payload.http.request.headers.user-agent-extracted",
+        "ignore_missing": true
+      }
+    }
+  ]
+}
